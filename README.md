@@ -1,4 +1,4 @@
-Please insert those data into AspNetUsers table to be able to login as I didn't have time to implement a register functionality
+Please insert those data into AspNetUsers table to be able to login as I didn't have time to implement a registeration functionality
 
 username : admin
 password : admin1
