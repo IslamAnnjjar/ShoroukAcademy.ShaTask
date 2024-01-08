@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ShoroukAcademy.ShaTask.Models.Models.InvoiceDetail>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>المنتجات المباعة</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">إنشاء فاتورة جديدة</a>
+</p>
+<table class="table table-success table-striped">
+    <thead>
+        <tr>
+            <th>
+                اسم المنتج
+            </th>
+            <th>
+                العدد
+            </th>
+            <th>
+                السعر
+            </th>
+            <th>
+                الكاشير
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceHeader.CustomerName)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">تعديل</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">تفاصيل</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">حذف</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

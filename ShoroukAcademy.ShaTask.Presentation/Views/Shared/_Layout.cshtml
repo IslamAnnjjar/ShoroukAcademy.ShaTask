@@ -1,0 +1,64 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/lib/twitter-bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/RTL.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                @RenderSection("Left", false)
+            </div>
+            <div class="col-8">
+                <main>
+                    <header>
+                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                            <div class="container-fluid">
+                                <a class="navbar-brand" href="#">Shorouk Academy</a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarColor01">
+                                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                        @if (SignInManager.IsSignedIn(User))
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" asp-action="Index" asp-controller="InvoiceDetails">الفواتير</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" asp-action="Index" asp-controller="Cashiers">تحكم الأدمن</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" asp-controller="User" asp-action="SignOut">خروج</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" asp-controller="User" asp-action="SignIn">دخول</a>
+                                            </li>
+                                        }
+
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </header>
+                    @RenderBody()
+                </main>
+                <footer></footer>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+    <script src="~/Content/lib/jquery/jquery.min.js"></script>
+    <script src="~/Content/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/Content/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
